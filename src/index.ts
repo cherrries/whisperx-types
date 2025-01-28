@@ -1,5 +1,15 @@
 // WhisperX CLI Options
 
+/** Available Whisper model names */
+export type WhisperXModel = 
+  | 'tiny.en' | 'tiny'
+  | 'base.en' | 'base'
+  | 'small.en' | 'small'
+  | 'medium.en' | 'medium'
+  | 'large-v1' | 'large-v2' | 'large-v3' | 'large'
+  | 'distil-large-v2' | 'distil-medium.en' | 'distil-small.en' | 'distil-large-v3'
+  | 'large-v3-turbo' | 'turbo';
+
 /** Language codes and full names supported by WhisperX for transcription and translation */
 export type WhisperXLanguage = 
   | 'af' | 'am' | 'ar' | 'as' | 'az' | 'ba' | 'be' | 'bg' | 'bn' | 'bo' | 'br' | 'bs' 
@@ -51,7 +61,7 @@ export type WhisperXSegmentResolution = 'sentence' | 'chunk';
 
 export interface WhisperXOptions {
   /** Name of the Whisper model to use (default: small) */
-  model?: string;
+  model?: WhisperXModel;
   /** Path to save model files; uses ~/.cache/whisper by default */
   model_dir?: string;
   /** Device to use for PyTorch inference (default: cpu) */
