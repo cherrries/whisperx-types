@@ -1,15 +1,16 @@
 {
-  "name": "whisperx-types",
+  "name": "@types/whisperx",
   "version": "3.3.1",
   "description": "TypeScript type definitions for WhisperX CLI options and transcript output",
   "types": "dist/index.d.ts",
-  "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
+  "type": "module",
   "files": [
-    "dist"
+    "dist/*.d.ts"
   ],
   "scripts": {
-    "build": "tsc",
-    "prepare": "tsc"
+    "build": "tsc --emitDeclarationOnly",
+    "prepare": "npm run build"
   },
   "keywords": [
     "whisperx",
