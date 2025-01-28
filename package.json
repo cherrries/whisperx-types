@@ -1,5 +1,5 @@
 {
-  "name": "@types/whisperx",
+  "name": "whisperx-types",
   "version": "3.3.1",
   "description": "TypeScript type definitions for WhisperX CLI options and transcript output",
   "types": "dist/index.d.ts",
