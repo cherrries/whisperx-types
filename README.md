@@ -4,7 +4,15 @@ TypeScript type definitions for WhisperX CLI options and transcript output.
 
 ## About
 
-These type definitions are based on [cherrries/whisperX](https://github.com/cherrries/whisperX), which tracks the latest version of faster-whisper. This means these types support more models than the original [m-bain/whisperX](https://github.com/m-bain/whisperX) repository.
+These type definitions are based on whisperX 3.3.1 
+
+### Key Features
+- Word-level timestamps using wav2vec2 alignment
+- Speaker diarization support (requires HuggingFace token)
+- VAD preprocessing (reduces hallucination)
+- Support for both pyannote and silero VAD methods
+- Batched inference support
+- Multiple compute types (float16, float32, int8)
 
 ### Supported Models
 - `tiny.en`
@@ -25,6 +33,21 @@ These type definitions are based on [cherrries/whisperX](https://github.com/cher
 - `distil-large-v3`
 - `large-v3-turbo`
 - `turbo`
+
+### Language Support
+Currently default alignment models are provided for:
+- English (en)
+- French (fr)
+- German (de)
+- Spanish (es)
+- Italian (it)
+- Japanese (ja)
+- Chinese (zh)
+- Dutch (nl)
+- Ukrainian (uk)
+- Portuguese (pt)
+
+Additional languages are supported via HuggingFace models. If a language is not in the default list, you'll need to specify a phoneme-based ASR model from HuggingFace.
 
 ## Installation
 
@@ -72,6 +95,7 @@ transcript.segments.forEach(segment => {
 
 #### Core Options
 - `model`: Name of the Whisper model to use (default: small)
+- `model_cache_only`: If True, will not attempt to download models, instead using cached models from model_dir
 - `model_dir`: Path to save model files (default: ~/.cache/whisper)
 - `device`: Device to use for PyTorch inference (default: cpu)
 - `device_index`: Device index for FasterWhisper inference (default: 0)
@@ -95,6 +119,7 @@ transcript.segments.forEach(segment => {
 - `return_char_alignments`: Return character-level alignments in JSON
 
 #### VAD & Diarization
+- `vad_method`: VAD method to be used (pyannote, silero) (default: pyannote)
 - `vad_onset`: Onset threshold for VAD (reduce if speech not detected)
 - `vad_offset`: Offset threshold for VAD
 - `chunk_size`: Chunk size for merging VAD segments (default: 30)
@@ -159,4 +184,3 @@ interface WhisperXWord {
   speaker?: string;   // Speaker label (when diarization enabled)
 }
 ```
-

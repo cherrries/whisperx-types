@@ -1,4 +1,5 @@
-usage: whisperx [-h] [--model MODEL] [--model_dir MODEL_DIR] [--device DEVICE]
+usage: whisperx [-h] [--model MODEL] [--model_cache_only MODEL_CACHE_ONLY]
+                [--model_dir MODEL_DIR] [--device DEVICE]
                 [--device_index DEVICE_INDEX] [--batch_size BATCH_SIZE]
                 [--compute_type {float16,float32,int8}]
                 [--output_dir OUTPUT_DIR]
@@ -7,12 +8,13 @@ usage: whisperx [-h] [--model MODEL] [--model_dir MODEL_DIR] [--device DEVICE]
                 [--language {af,am,ar,as,az,ba,be,bg,bn,bo,br,bs,ca,cs,cy,da,de,el,en,es,et,eu,fa,fi,fo,fr,gl,gu,ha,haw,he,hi,hr,ht,hu,hy,id,is,it,ja,jw,ka,kk,km,kn,ko,la,lb,ln,lo,lt,lv,mg,mi,mk,ml,mn,mr,ms,mt,my,ne,nl,nn,no,oc,pa,pl,ps,pt,ro,ru,sa,sd,si,sk,sl,sn,so,sq,sr,su,sv,sw,ta,te,tg,th,tk,tl,tr,tt,uk,ur,uz,vi,yi,yo,yue,zh,Afrikaans,Albanian,Amharic,Arabic,Armenian,Assamese,Azerbaijani,Bashkir,Basque,Belarusian,Bengali,Bosnian,Breton,Bulgarian,Burmese,Cantonese,Castilian,Catalan,Chinese,Croatian,Czech,Danish,Dutch,English,Estonian,Faroese,Finnish,Flemish,French,Galician,Georgian,German,Greek,Gujarati,Haitian,Haitian Creole,Hausa,Hawaiian,Hebrew,Hindi,Hungarian,Icelandic,Indonesian,Italian,Japanese,Javanese,Kannada,Kazakh,Khmer,Korean,Lao,Latin,Latvian,Letzeburgesch,Lingala,Lithuanian,Luxembourgish,Macedonian,Malagasy,Malay,Malayalam,Maltese,Maori,Marathi,Moldavian,Moldovan,Mongolian,Myanmar,Nepali,Norwegian,Nynorsk,Occitan,Panjabi,Pashto,Persian,Polish,Portuguese,Punjabi,Pushto,Romanian,Russian,Sanskrit,Serbian,Shona,Sindhi,Sinhala,Sinhalese,Slovak,Slovenian,Somali,Spanish,Sundanese,Swahili,Swedish,Tagalog,Tajik,Tamil,Tatar,Telugu,Thai,Tibetan,Turkish,Turkmen,Ukrainian,Urdu,Uzbek,Valencian,Vietnamese,Welsh,Yiddish,Yoruba}]
                 [--align_model ALIGN_MODEL]
                 [--interpolate_method {nearest,linear,ignore}] [--no_align]
-                [--return_char_alignments] [--vad_onset VAD_ONSET]
-                [--vad_offset VAD_OFFSET] [--chunk_size CHUNK_SIZE]
-                [--diarize] [--min_speakers MIN_SPEAKERS]
-                [--max_speakers MAX_SPEAKERS] [--temperature TEMPERATURE]
-                [--best_of BEST_OF] [--beam_size BEAM_SIZE]
-                [--patience PATIENCE] [--length_penalty LENGTH_PENALTY]
+                [--return_char_alignments] [--vad_method {pyannote,silero}]
+                [--vad_onset VAD_ONSET] [--vad_offset VAD_OFFSET]
+                [--chunk_size CHUNK_SIZE] [--diarize]
+                [--min_speakers MIN_SPEAKERS] [--max_speakers MAX_SPEAKERS]
+                [--temperature TEMPERATURE] [--best_of BEST_OF]
+                [--beam_size BEAM_SIZE] [--patience PATIENCE]
+                [--length_penalty LENGTH_PENALTY]
                 [--suppress_tokens SUPPRESS_TOKENS] [--suppress_numerals]
                 [--initial_prompt INITIAL_PROMPT]
                 [--condition_on_previous_text CONDITION_ON_PREVIOUS_TEXT]
@@ -34,6 +36,9 @@ positional arguments:
 options:
   -h, --help            show this help message and exit
   --model MODEL         name of the Whisper model to use (default: small)
+  --model_cache_only MODEL_CACHE_ONLY
+                        If True, will not attempt to download models, instead
+                        using cached models from --model_dir (default: False)
   --model_dir MODEL_DIR
                         the path to save model files; uses ~/.cache/whisper by
                         default (default: None)
@@ -70,6 +75,8 @@ options:
   --return_char_alignments
                         Return character-level alignments in the output json
                         file (default: False)
+  --vad_method {pyannote,silero}
+                        VAD method to be used (default: pyannote)
   --vad_onset VAD_ONSET
                         Onset threshold for VAD (see pyannote.audio), reduce
                         this if speech is not being detected (default: 0.5)

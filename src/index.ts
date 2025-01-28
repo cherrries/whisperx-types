@@ -10,6 +10,9 @@ export type WhisperXModel =
   | 'distil-large-v2' | 'distil-medium.en' | 'distil-small.en' | 'distil-large-v3'
   | 'large-v3-turbo' | 'turbo';
 
+/** VAD (Voice Activity Detection) methods available */
+export type WhisperXVadMethod = 'pyannote' | 'silero';
+
 /** Language codes and full names supported by WhisperX for transcription and translation */
 export type WhisperXLanguage = 
   | 'af' | 'am' | 'ar' | 'as' | 'az' | 'ba' | 'be' | 'bg' | 'bn' | 'bo' | 'br' | 'bs' 
@@ -62,6 +65,8 @@ export type WhisperXSegmentResolution = 'sentence' | 'chunk';
 export interface WhisperXOptions {
   /** Name of the Whisper model to use (default: small) */
   model?: WhisperXModel;
+  /** If True, will not attempt to download models, instead using cached models from --model_dir */
+  model_cache_only?: boolean;
   /** Path to save model files; uses ~/.cache/whisper by default */
   model_dir?: string;
   /** Device to use for PyTorch inference (default: cpu) */
@@ -144,6 +149,8 @@ export interface WhisperXOptions {
   hf_token?: string;
   /** If True, progress will be printed in transcribe() and align() methods */
   print_progress?: boolean;
+  /** VAD method to be used (default: pyannote) */
+  vad_method?: WhisperXVadMethod;
 }
 
 // WhisperX Transcript Types
