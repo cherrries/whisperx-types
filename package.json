@@ -1,12 +1,15 @@
 {
   "name": "whisperx-types",
-  "version": "1.0.0",
-  "description": "TypeScript type definitions for WhisperX CLI and transcript output",
-  "main": "dist/index.js",
+  "version": "3.3.1",
+  "description": "TypeScript type definitions for WhisperX CLI options and transcript output",
   "types": "dist/index.d.ts",
+  "main": "dist/index.js",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "tsc",
-    "prepare": "npm run build"
+    "prepare": "tsc"
   },
   "keywords": [
     "whisperx",
@@ -15,10 +18,13 @@
   ],
   "author": "",
   "license": "MIT",
+  "peerDependencies": {
+    "typescript": ">=4.5.0"
+  },
   "devDependencies": {
     "typescript": "^5.0.0"
   },
-  "files": [
-    "dist"
-  ]
+  "engines": {
+    "node": ">=14.0.0"
+  }
 } 

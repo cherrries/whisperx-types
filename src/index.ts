@@ -1,7 +1,7 @@
 // WhisperX CLI Options
 
 /** Available Whisper model names */
-export type WhisperXModel = 
+export type WhisperXModel =
   | 'tiny.en' | 'tiny'
   | 'base.en' | 'base'
   | 'small.en' | 'small'
