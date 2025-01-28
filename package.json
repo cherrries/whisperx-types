@@ -1,0 +1,24 @@
+{
+  "name": "whisperx-types",
+  "version": "1.0.0",
+  "description": "TypeScript type definitions for WhisperX CLI and transcript output",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "prepare": "npm run build"
+  },
+  "keywords": [
+    "whisperx",
+    "typescript",
+    "types"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "files": [
+    "dist"
+  ]
+} 
